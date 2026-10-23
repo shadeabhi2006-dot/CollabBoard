@@ -1,0 +1,700 @@
+/* ==========================================
+   COLLABBOARD RESPONSIVE DESIGN
+   Phones, tablets, laptops and desktops
+   ========================================== */
+
+/* Prevent layout overflow */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    min-width: 320px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+button,
+input,
+a {
+    touch-action: manipulation;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ==========================================
+   TABLETS: 721px–1100px
+   ========================================== */
+
+@media (min-width: 721px) and (max-width: 1100px) {
+
+    .room-header {
+        min-height: 72px;
+        padding: 12px 22px;
+        grid-template-columns: minmax(150px, 1fr) auto;
+        gap: 14px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .room-id-display {
+        font-size: 14px;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .workspace {
+        width: calc(100% - 36px);
+        max-width: none;
+        margin: 24px auto;
+        grid-template-columns: minmax(0, 1fr) 275px;
+        gap: 16px;
+        min-height: 550px;
+    }
+
+    .board-panel {
+        min-height: 550px;
+    }
+
+    .toolbar {
+        max-width: calc(100% - 24px);
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        scrollbar-width: thin;
+    }
+
+    .toolbar > * {
+        flex-shrink: 0;
+    }
+
+    .size-control input {
+        width: 65px;
+    }
+
+    .side-column {
+        min-width: 0;
+    }
+
+    .participant-name {
+        font-size: 12px;
+    }
+
+    .side-card-heading {
+        padding: 0 14px;
+    }
+
+    .messages {
+        padding: 12px 10px;
+    }
+
+    .chat-form {
+        padding: 10px;
+    }
+}
+
+
+/* ==========================================
+   PHONES: 320px–720px
+   ========================================== */
+
+@media (max-width: 720px) {
+
+    /* Page */
+
+    body {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Header */
+
+    .room-header {
+        width: 100%;
+        min-height: 76px;
+        padding: 10px 14px;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        gap: 8px;
+    }
+
+    .brand {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+        gap: 8px;
+        font-size: 18px;
+    }
+
+    .brand-mark {
+        width: 27px;
+        height: 27px;
+        font-size: 23px;
+    }
+
+    .room-id-display {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: start;
+        align-self: center;
+        gap: 4px;
+        font-size: 12px;
+    }
+
+    .room-id-display strong {
+        max-width: 135px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .copy-button {
+        width: 27px;
+        height: 27px;
+        flex-shrink: 0;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .header-actions {
+        display: none;
+    }
+
+    /* Theme toggle */
+
+    .theme-toggle {
+        position: fixed;
+        z-index: 50;
+
+        top: 90px;
+        left: 10px;
+
+        width: 36px;
+        height: 36px;
+
+        border-radius: 11px;
+    }
+
+    /* Main layout */
+
+    .workspace {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        width: calc(100% - 20px);
+        max-width: none;
+
+        min-height: 0;
+
+        margin: 14px auto 18px;
+        gap: 14px;
+    }
+
+    /* Whiteboard */
+
+    .board-panel {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+
+        height: 58vh;
+        height: 58dvh;
+
+        min-height: 360px;
+        max-height: 650px;
+
+        flex: 0 0 auto;
+
+        border-radius: 12px;
+    }
+
+    .canvas-wrap {
+        position: relative;
+
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+
+        flex: 1;
+
+        overflow: hidden;
+    }
+
+    .canvas-wrap canvas {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        touch-action: none;
+
+        user-select: none;
+        -webkit-user-select: none;
+
+        -webkit-touch-callout: none;
+    }
+
+    /* Toolbar stays inside the board and scrolls horizontally. */
+
+    .toolbar {
+        position: absolute;
+
+        top: 12px;
+        left: 7px;
+        right: 7px;
+
+        transform: none;
+
+        width: auto;
+        max-width: none;
+        min-width: 0;
+
+        min-height: 52px;
+
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        gap: 5px;
+
+        padding: 5px 7px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        border-radius: 11px;
+
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+
+        overscroll-behavior-x: contain;
+    }
+
+    .toolbar > * {
+        flex-shrink: 0;
+    }
+
+    .tool-button {
+        width: 35px;
+        min-width: 35px;
+        height: 36px;
+
+        border-radius: 8px;
+
+        font-size: 20px;
+    }
+
+    .tool-button svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .toolbar-divider {
+        height: 26px;
+        margin: 0 2px;
+    }
+
+    .color-picker-label {
+        width: 26px;
+        min-width: 26px;
+        height: 26px;
+    }
+
+    .swatches {
+        display: grid;
+        grid-template-columns: repeat(2, 12px);
+        gap: 4px;
+        margin: 0 2px;
+    }
+
+    .swatches button {
+        width: 12px;
+        height: 12px;
+
+        min-width: 12px;
+        min-height: 12px;
+    }
+
+    .size-control {
+        gap: 4px;
+        margin-left: 2px;
+        font-size: 11px;
+    }
+
+    .size-control input {
+        width: 65px;
+        min-width: 65px;
+        height: 24px;
+    }
+
+    /* Keep fill and clear available on phones. */
+
+    .extra-tool {
+        display: grid;
+        width: 32px;
+        min-width: 32px;
+        height: 35px;
+    }
+
+    .board-status {
+        min-height: 27px;
+        flex: 0 0 27px;
+        font-size: 10px;
+    }
+
+    /* Sidebar appears below the board. */
+
+    .side-column {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        min-width: 0;
+
+        gap: 13px;
+    }
+
+    .side-card {
+        width: 100%;
+        min-width: 0;
+
+        border-radius: 12px;
+    }
+
+    .side-card-heading {
+        min-height: 50px;
+        padding: 0 14px;
+    }
+
+    .side-card-heading h2 {
+        font-size: 14px;
+    }
+
+    /* Participants */
+
+    .participants-card {
+        flex: 0 0 auto;
+    }
+
+    .participant-list {
+        padding: 6px 14px 10px;
+    }
+
+    .participant-item {
+        gap: 9px;
+        padding: 7px 0;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+    }
+
+    .participant-name {
+        font-size: 13px;
+    }
+
+    /* Chat */
+
+    .chat-card {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 330px;
+        max-height: none;
+
+        flex: 0 0 auto;
+    }
+
+    .messages {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 180px;
+        max-height: 330px;
+
+        flex: 1 1 auto;
+
+        gap: 9px;
+        padding: 12px;
+
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+    }
+
+    .message {
+        max-width: 95%;
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .chat-form {
+        position: sticky;
+        bottom: 0;
+
+        display: flex;
+        gap: 7px;
+
+        padding: 10px;
+
+        background: var(--surface, #fff);
+    }
+
+    .chat-form input {
+        width: 0;
+        min-width: 0;
+        height: 43px;
+
+        flex: 1 1 auto;
+
+        font-size: 16px;
+    }
+
+    .chat-form button {
+        width: 43px;
+        height: 43px;
+        flex: 0 0 43px;
+    }
+
+    /* Footer */
+
+    .room-footer {
+        display: flex;
+        flex-wrap: wrap;
+
+        min-height: 38px;
+        gap: 8px;
+
+        padding: 10px;
+
+        font-size: 10px;
+        text-align: center;
+    }
+}
+
+
+/* ==========================================
+   SMALL PHONES: 320px–380px
+   ========================================== */
+
+@media (max-width: 380px) {
+
+    .room-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .room-id-display {
+        font-size: 11px;
+    }
+
+    .room-id-display strong {
+        max-width: 110px;
+    }
+
+    .workspace {
+        width: calc(100% - 14px);
+        margin-top: 10px;
+    }
+
+    .board-panel {
+        height: 55vh;
+        height: 55dvh;
+        min-height: 340px;
+    }
+
+    .toolbar {
+        left: 5px;
+        right: 5px;
+        gap: 4px;
+        padding: 5px;
+    }
+
+    .tool-button {
+        width: 32px;
+        min-width: 32px;
+    }
+
+    .size-control input {
+        width: 54px;
+        min-width: 54px;
+    }
+
+    .theme-toggle {
+        left: 7px;
+        width: 33px;
+        height: 33px;
+    }
+}
+
+
+/* ==========================================
+   LANDSCAPE PHONES
+   ========================================== */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .room-header {
+        min-height: 58px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .workspace {
+        margin-top: 10px;
+    }
+
+    .board-panel {
+        height: 75vh;
+        height: 75dvh;
+        min-height: 280px;
+        max-height: none;
+    }
+
+    .toolbar {
+        top: 8px;
+    }
+
+    .side-column {
+        gap: 10px;
+    }
+
+    .chat-card {
+        min-height: 300px;
+    }
+}
+
+
+/* ==========================================
+   TOUCH DEVICES
+   ========================================== */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .tool-button,
+    .copy-button,
+    .theme-toggle,
+    .chat-form button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .tool-button {
+        min-height: 36px;
+    }
+
+    .swatches button {
+        min-width: 14px;
+        min-height: 14px;
+    }
+
+    .size-control input {
+        min-height: 24px;
+    }
+
+    /* Avoid hover-only interactions on touchscreens. */
+
+    .tool-button:hover {
+        background: transparent;
+    }
+
+    .tool-button.active:hover {
+        background: rgba(52, 91, 136, 0.8);
+    }
+}
+
+
+/* ==========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* ==========================================
+   LOGIN PAGE RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 720px) {
+
+    /* Prevent login cards and sections from exceeding the screen. */
+
+    body:not(.room-page) {
+        width: 100%;
+        min-width: 320px;
+        overflow-x: hidden;
+    }
+
+    body:not(.room-page) main,
+    body:not(.room-page) .container,
+    body:not(.room-page) .login-container,
+    body:not(.room-page) .hero,
+    body:not(.room-page) .hero-content {
+        max-width: 100%;
+    }
+
+    body:not(.room-page) input,
+    body:not(.room-page) button,
+    body:not(.room-page) select {
+        max-width: 100%;
+    }
+
+    body:not(.room-page) input {
+        font-size: 16px;
+    }
+
+    body:not(.room-page) button {
+        min-height: 42px;
+    }
+
+    body:not(.room-page) header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    body:not(.room-page) nav {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    body:not(.room-page) footer {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}

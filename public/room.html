@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CollabBoard | Collaborative Workspace</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/room.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body class="room-page">
+
+    <!-- =====================================
+         TOP NAVIGATION
+    ====================================== -->
+
+    <header class="room-header">
+
+        <a href="/" class="brand">
+            <span class="brand-mark">C<span>B</span></span>
+            <span>CollabBoard</span>
+        </a>
+
+        <div class="room-id-display">
+            <span>Room ID:</span>
+
+            <strong id="roomIdLabel">Loading...</strong>
+
+            <button
+                id="copyRoomId"
+                class="copy-button"
+                type="button"
+                title="Copy room ID"
+                aria-label="Copy room ID"
+            >
+                ▢
+            </button>
+
+            <span id="copyStatus" class="copy-status"></span>
+        </div>
+
+        <nav class="header-nav">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+
+            <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noreferrer"
+            >
+                Github
+            </a>
+
+            <a href="/">Sign In</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <span class="online-pill">
+                <span class="online-dot"></span>
+                <span id="onlineCount">1</span> online
+            </span>
+
+            <button
+                id="leaveRoom"
+                class="leave-button"
+                type="button"
+            >
+                Leave Room <span>↗</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         THEME TOGGLE
+    ====================================== -->
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        title="Switch to dark mode"
+    >
+        <svg
+            class="theme-icon moon-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+        >
+            <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8
+                   8.7 8.7 0 1 0 20.2 15.1Z"
+                fill="currentColor"
+            />
+        </svg>
+
+        <svg
+            class="theme-icon sun-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+        >
+            <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            <path
+                d="M12 2v2
+                   M12 20v2
+                   M4.93 4.93l1.42 1.42
+                   M17.65 17.65l1.42 1.42
+                   M2 12h2
+                   M20 12h2
+                   M4.93 19.07l1.42-1.42
+                   M17.65 6.35l1.42-1.42"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+        </svg>
+    </button>
+
+
+    <!-- =====================================
+         MAIN WORKSPACE
+    ====================================== -->
+
+    <main class="workspace">
+
+        <!-- WHITEBOARD -->
+
+        <section class="board-panel">
+
+            <div class="canvas-wrap">
+
+                <canvas
+                    id="drawingCanvas"
+                    aria-label="Collaborative whiteboard"
+                ></canvas>
+
+            </div>
+
+
+            <!-- FLOATING DRAWING TOOLBAR -->
+
+            <div
+                class="toolbar"
+                role="toolbar"
+                aria-label="Drawing tools"
+            >
+
+                <button
+                    class="tool-button active"
+                    data-tool="pen"
+                    type="button"
+                    title="Pen"
+                    aria-label="Pen"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="m15.5 5.5 3 3L8 19l-4 1 1-4Z"
+                            fill="currentColor"
+                        />
+                        <path
+                            d="m14 7 3 3"
+                            stroke="#7895b7"
+                            stroke-width="1.5"
+                        />
+                    </svg>
+                </button>
+
+
+                <button
+                    class="tool-button"
+                    data-tool="eraser"
+                    type="button"
+                    title="Eraser"
+                    aria-label="Eraser"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="m8 4 12 12-5 5H8l-5-5Z"
+                            fill="currentColor"
+                        />
+                        <path
+                            d="m7 17 5-5"
+                            stroke="#7895b7"
+                            stroke-width="1.5"
+                        />
+                    </svg>
+                </button>
+
+
+                <span class="toolbar-divider"></span>
+
+
+                <!-- Colour picker -->
+
+                <label
+                    class="color-picker-label"
+                    title="Choose drawing colour"
+                >
+                    <input
+                        id="colorPicker"
+                        type="color"
+                        value="#315b87"
+                        aria-label="Choose drawing colour"
+                    >
+
+                    <span>◉</span>
+                </label>
+
+
+                <!-- Quick colours -->
+
+                <div class="swatches">
+
+                    <button
+                        type="button"
+                        data-color="#e76f6f"
+                        style="--swatch:#e76f6f"
+                        title="Red"
+                        aria-label="Red"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-color="#f0c64e"
+                        style="--swatch:#f0c64e"
+                        title="Yellow"
+                        aria-label="Yellow"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-color="#54a878"
+                        style="--swatch:#54a878"
+                        title="Green"
+                        aria-label="Green"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-color="#8068d8"
+                        style="--swatch:#8068d8"
+                        title="Purple"
+                        aria-label="Purple"
+                    ></button>
+
+                </div>
+
+
+                <!-- Brush size -->
+
+                <label
+                    class="size-control"
+                    title="Brush size"
+                >
+                    <input
+                        id="brushSize"
+                        type="range"
+                        min="2"
+                        max="18"
+                        value="5"
+                        aria-label="Brush size"
+                    >
+
+                    <span id="brushSizeValue">5</span>
+                </label>
+
+
+                <!-- Fill canvas -->
+
+                <button
+    type="button"
+    id="fillBoard"
+    data-tool="fill"
+    class="tool-button"
+    title="Fill a closed area"
+    aria-label="Paint bucket"
+    aria-pressed="false"
+>
+    🪣
+</button>
+
+
+                <!-- Clear canvas -->
+
+                <button
+                    id="clearBoard"
+                    class="tool-button extra-tool"
+                    type="button"
+                    title="Clear board"
+                    aria-label="Clear board"
+                >
+                    ⌫
+                </button>
+
+            </div>
+
+
+            <div class="board-status">
+                <span class="status-indicator"></span>
+                Collaborative whiteboard
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDEBAR -->
+
+        <aside class="side-column">
+
+            <!-- PARTICIPANTS -->
+
+            <section class="side-card participants-card">
+
+                <div class="side-card-heading">
+
+                    <h2>Participants</h2>
+
+                    <span
+                        id="participantCount"
+                        class="count-badge"
+                    >
+                        1
+                    </span>
+
+                </div>
+
+                <ul
+                    id="participants"
+                    class="participant-list"
+                >
+
+                    <li class="participant-item">
+
+                        <span class="avatar">Y</span>
+
+                        <span class="participant-name">You</span>
+
+                        <span class="you-tag">YOU</span>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- CHAT -->
+
+            <section class="side-card chat-card">
+
+                <div class="side-card-heading">
+
+                    <h2>Chat</h2>
+
+                    <span class="chat-live">
+                        <span class="online-dot"></span>
+                        Live
+                    </span>
+
+                </div>
+
+
+                <!-- Chat messages -->
+
+                <div
+                    id="messages"
+                    class="messages"
+                    aria-live="polite"
+                >
+
+                    <div class="empty-chat" id="emptyChat">
+
+                        <span class="empty-chat-icon">✧</span>
+
+                        <strong>Start a conversation</strong>
+
+                        <small>
+                            Messages from your team will appear here.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Chat input -->
+
+                <form id="chatForm" class="chat-form">
+
+                    <label
+                        class="sr-only"
+                        for="messageInput"
+                    >
+                        Message
+                    </label>
+
+                    <input
+                        id="messageInput"
+                        type="text"
+                        placeholder="Write a message..."
+                        maxlength="500"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="sendMessage"
+                        type="submit"
+                        aria-label="Send message"
+                        title="Send message"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="m3 20 18-8L3 4l2 7 9 1-9 1Z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                    </button>
+
+                </form>
+
+            </section>
+
+        </aside>
+
+    </main>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="room-footer">
+
+        <span>
+            CollabBoard © <span id="year"></span>
+        </span>
+
+        <span>|</span>
+
+        <a href="#privacy">Privacy</a>
+
+        <span>|</span>
+
+        <a href="#terms">Terms</a>
+
+    </footer>
+
+
+    <!-- Socket.IO -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Your room functionality -->
+
+    <script src="/js/room.js"></script>
+
+    <!-- Dark mode -->
+
+    <script src="/js/theme.js"></script>
+
+</body>
+</html>

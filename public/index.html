@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CollabBoard | Think Together</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body class="home-page">
+
+    <!-- Navigation -->
+    <header class="site-header">
+
+        <a href="/" class="brand">
+            <span class="brand-mark">C<span>B</span></span>
+            <span>CollabBoard</span>
+        </a>
+
+        <nav class="top-nav">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="https://github.com/" target="_blank" rel="noreferrer">Github</a>
+            <a href="#signin" id="signInLink">Sign In</a>
+        </nav>
+
+    </header>
+
+    <!-- Dark mode button -->
+    <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+    >
+        ☾
+    </button>
+
+    <!-- Main content -->
+    <main class="home-main">
+
+        <!-- Decorative background elements -->
+        <div class="ambient-card ambient-card-one"></div>
+        <div class="ambient-card ambient-card-two"></div>
+        <div class="ambient-orb orb-one"></div>
+        <div class="ambient-orb orb-two"></div>
+
+        <!-- Login card -->
+        <section class="join-card" id="signin">
+
+            <div class="join-brand">
+
+                <span class="brand-mark large">C<span>B</span></span>
+
+                <h1>CollabBoard</h1>
+
+            </div>
+
+            <p class="card-subtitle">
+                Create a room or join an existing room.
+            </p>
+
+            <form id="identityForm">
+
+                <!-- Username -->
+                <div class="input-group">
+
+                    <label class="sr-only" for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        maxlength="24"
+                        autocomplete="nickname"
+                        required
+                    >
+
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Create room -->
+                <section class="action-section">
+
+                    <h2>Create a Room</h2>
+
+                    <p>
+                        A Room ID will be generated automatically.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="createRoom"
+                    >
+                        <span class="button-icon">＋</span>
+                        Create Room
+                    </button>
+
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- Join room -->
+                <section class="action-section join-section">
+
+                    <h2>Join a Room</h2>
+
+                    <label class="sr-only" for="roomId">
+                        Room ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="roomId"
+                        name="roomId"
+                        placeholder="Enter Room ID"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="joinRoom"
+                    >
+                        Enter Room
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <p
+                        class="form-error"
+                        id="formError"
+                        role="alert"
+                    ></p>
+
+                </section>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <span>
+            CollabBoard © <span id="year"></span>
+        </span>
+
+        <span class="footer-separator">|</span>
+
+        <a href="#privacy">Privacy</a>
+
+        <span class="footer-separator">|</span>
+
+        <a href="#terms">Terms</a>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/home.js"></script>
+    <script src="/js/theme.js"></script>
+
+</body>
+</html>
