@@ -42,7 +42,12 @@
         return;
     }
 
-    const socket = window.io();
+    const socket = window.io(
+    "https://collabboard-633k.onrender.com",
+    {
+        transports: ["websocket", "polling"]
+    }
+);
 
     let tool = "pen";
     let color = colorPicker?.value || "#315b87";

@@ -6,7 +6,15 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: [
+            "https://collabboard-sigma-seven.vercel.app",
+            "https://collabboard-633k.onrender.com"
+        ],
+        methods: ["GET", "POST"]
+    }
+});
 
 const PORT = process.env.PORT || 3000;
 const rooms = new Map();
