@@ -1,106 +1,114 @@
-(() => {
+
+document.addEventListener("DOMContentLoaded", () => {
     const usernameInput = document.getElementById("username");
-    const roomInput = document.getElementById("roomId");
-    const error = document.getElementById("formError");
+    const roomIdInput = document.getElementById("roomId");
 
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
+    const identityForm = document.getElementById("identityForm");
+    const createRoomButton = document.getElementById("createRoom");
+    const joinRoomButton = document.getElementById("joinRoom");
 
+    const formError = document.getElementById("formError");
+    const yearElement = document.getElementById("year");
+
+    // Display current year
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+    // Restore the previously saved username
+    const savedUsername = localStorage.getItem("username");
+
+    if (savedUsername) {
+        usernameInput.value = savedUsername;
+    }
+
+    // Show an error message
+    function showError(message) {
+        if (formError) {
+            formError.textContent = message;
+            formError.style.display = "block";
+        } else {
+            alert(message);
+        }
+    }
+
+    // Clear error message
+    function clearError() {
+        if (formError) {
+            formError.textContent = "";
+            formError.style.display = "none";
+        }
+    }
+
+    // Validate and save username
     function getUsername() {
         const username = usernameInput.value.trim();
 
         if (!username) {
-            error.textContent = "Please enter your username first.";
+            showError("Please enter your username.");
             usernameInput.focus();
-            return "";
+            return null;
         }
 
         if (username.length > 24) {
-            error.textContent =
-                "Your username must be 24 characters or fewer.";
-
+            showError("Username cannot exceed 24 characters.");
             usernameInput.focus();
-            return "";
+            return null;
         }
 
         localStorage.setItem("username", username);
-
-        error.textContent = "";
+        clearError();
 
         return username;
     }
 
-    function openRoom(roomId) {
-        localStorage.setItem("roomId", roomId);
+    // Open a room using its ID
+    function openRoom(roomId, username) {
+        const roomURL = new URL("/room.html", window.location.origin);
 
-        window.location.href = "/room.html";
+        roomURL.searchParams.set("room", roomId);
+        roomURL.searchParams.set("username", username);
+
+        window.location.assign(roomURL.toString());
     }
 
-    // Create a new room
-    document
-        .getElementById("createRoom")
-        .addEventListener("click", () => {
+    // CREATE ROOM
+    createRoomButton.addEventListener("click", () => {
+        const username = getUsername();
 
-            if (!getUsername()) {
-                return;
-            }
+        if (!username) return;
 
-            const roomId =
-                "CB-" +
-                Math.random()
-                    .toString(36)
-                    .slice(2, 8)
-                    .toUpperCase();
+        // Generate a fresh room ID
+        const randomPart = Math.random()
+            .toString(36)
+            .substring(2, 8)
+            .toUpperCase();
 
-            openRoom(roomId);
-        });
+        const roomId = "CB-" + randomPart;
 
-    // Join an existing room
-    document
-        .getElementById("identityForm")
-        .addEventListener("submit", event => {
+        openRoom(roomId, username);
+    });
 
-            event.preventDefault();
+    // JOIN ROOM
+    function joinRoom() {
+        const username = getUsername();
 
-            if (!getUsername()) {
-                return;
-            }
+        if (!username) return;
 
-            const roomId = roomInput.value.trim();
+        const roomId = roomIdInput.value.trim();
 
-            if (!roomId) {
-                error.textContent =
-                    "Enter a Room ID to join, or choose Create Room.";
+        if (!roomId) {
+            showError("Please enter a Room ID.");
+            roomIdInput.focus();
+            return;
+        }
 
-                roomInput.focus();
-
-                return;
-            }
-
-            openRoom(roomId);
-        });
-
-    // Sign In navigation
-    document
-        .getElementById("signInLink")
-        .addEventListener("click", event => {
-
-            event.preventDefault();
-
-            usernameInput.focus();
-
-            document
-                .getElementById("signin")
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-        });
-
-    // Restore the last username
-    const savedName = localStorage.getItem("username");
-
-    if (savedName) {
-        usernameInput.value = savedName;
+        openRoom(roomId, username);
     }
-})();
+
+    // Join button is a submit button in index.html
+    identityForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        joinRoom();
+    });
+});
