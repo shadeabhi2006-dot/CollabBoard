@@ -9,13 +9,7 @@
         return;
     }
 
-    /*
-     * Restore the saved theme.
-     *
-     * The same localStorage key is used by the login page
-     * and the room page.
-     */
-
+    // Restore the previously selected theme.
     function getSavedTheme() {
         try {
             return localStorage.getItem(STORAGE_KEY) === "true";
@@ -24,47 +18,47 @@
         }
     }
 
+    // Apply the selected theme.
     function applyTheme(isDark) {
+
         document.body.classList.toggle("dark-mode", isDark);
 
-        toggleButton.setAttribute(
-            "aria-label",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
+        const label = isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode";
+
+        toggleButton.setAttribute("aria-label", label);
+        toggleButton.setAttribute("title", label);
+        toggleButton.setAttribute("aria-pressed", String(isDark));
+
+        // Update browser theme colour on mobile.
+        const themeColor = document.querySelector(
+            'meta[name="theme-color"]'
         );
 
-        toggleButton.setAttribute(
-            "title",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
-        );
-
-        toggleButton.setAttribute(
-            "aria-pressed",
-            isDark ? "true" : "false"
-        );
+        if (themeColor) {
+            themeColor.setAttribute(
+                "content",
+                isDark ? "#08132e" : "#c9b5f3"
+            );
+        }
     }
 
-    /*
-     * Apply the saved theme immediately.
-     */
-
+    // Apply saved theme immediately.
     applyTheme(getSavedTheme());
 
-    /*
-     * Toggle the theme when the button is clicked.
-     */
-
+    // Toggle theme when the bulb is clicked.
     toggleButton.addEventListener("click", () => {
-        const currentlyDark =
-            document.body.classList.contains("dark-mode");
 
-        const newDarkMode = !currentlyDark;
+        const newDarkMode =
+            !document.body.classList.contains("dark-mode");
 
         applyTheme(newDarkMode);
 
         try {
             localStorage.setItem(
                 STORAGE_KEY,
-                newDarkMode ? "true" : "false"
+                String(newDarkMode)
             );
         } catch (error) {
             console.warn("Unable to save theme preference.");

@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9b5f3">
 
     <title>CollabBoard | Think Together</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
@@ -20,161 +18,205 @@
 
 <body class="home-page">
 
-    <!-- Navigation -->
-    <header class="site-header">
-
-        <a href="/" class="brand">
-            <span class="brand-mark">C<span>B</span></span>
-            <span>CollabBoard</span>
-        </a>
-
-        <nav class="top-nav">
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="https://github.com/" target="_blank" rel="noreferrer">Github</a>
-            <a href="#signin" id="signInLink">Sign In</a>
-        </nav>
-
-    </header>
-
-    <!-- Dark mode button -->
-    <button
-        class="theme-toggle"
-        id="themeToggle"
-        type="button"
-        aria-label="Toggle dark mode"
-        title="Toggle dark mode"
-    >
-        ☾
-    </button>
-
-    <!-- Main content -->
     <main class="home-main">
 
-        <!-- Decorative background elements -->
-        <div class="ambient-card ambient-card-one"></div>
-        <div class="ambient-card ambient-card-two"></div>
-        <div class="ambient-orb orb-one"></div>
-        <div class="ambient-orb orb-two"></div>
+        <!-- Decorative hand-drawn illustrations -->
+        <svg class="doodle-layer" viewBox="0 0 1440 900"
+             preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+
+            <g class="doodle laptop" transform="translate(105 115) rotate(-10)">
+                <path d="M15 15 Q15 8 23 8 H150 Q158 8 158 16 V105 H15 Z"/>
+                <path d="M15 105 L-5 135 Q-8 142 2 142 H180 Q190 142 183 134 L158 105"/>
+                <path d="M65 62 Q86 83 108 61 M65 42 H66 M108 42 H109"/>
+                <path d="M175 0 l20 -15 M190 20 l23 -5"/>
+            </g>
+
+            <g class="doodle cloud" transform="translate(1170 140)">
+                <path d="M12 70 Q-5 68 0 50 Q3 35 20 35 Q20 8 48 8 Q65 -2 80 18 Q103 2 119 25 Q143 24 145 49 Q151 70 126 76 Z"/>
+            </g>
+
+            <g class="doodle star" transform="translate(285 390)">
+                <path d="M25 0 L32 18 L52 20 L36 33 L41 53 L25 41 L8 53 L14 33 L-2 20 L18 18 Z"/>
+            </g>
+
+            <g class="doodle star" transform="translate(1145 340) scale(.8)">
+                <path d="M25 0 L32 18 L52 20 L36 33 L41 53 L25 41 L8 53 L14 33 L-2 20 L18 18 Z"/>
+            </g>
+
+            <g class="doodle cup" transform="translate(90 545) rotate(-8)">
+                <path d="M10 40 Q55 60 100 40 L91 105 Q55 130 19 105 Z"/>
+                <path d="M100 53 Q145 40 135 80 Q130 100 96 91"/>
+                <path d="M35 15 Q25 0 38 -12 M62 14 Q52 -1 65 -15 M82 16 Q72 2 84 -10"/>
+                <path d="M48 73 Q55 57 67 72 Q78 58 85 74 Q69 100 67 100 Z"/>
+            </g>
+
+            <g class="doodle pencil" transform="translate(1250 400) rotate(28)">
+                <path d="M20 0 Q30 -12 40 0 L40 145 L30 164 L20 145 Z"/>
+                <path d="M20 18 H40 M20 135 H40 M20 145 L30 164 L40 145"/>
+            </g>
+
+            <g class="doodle smile" transform="translate(1270 625)">
+                <circle cx="48" cy="48" r="45"/>
+                <path d="M25 58 Q48 84 72 58 M30 35 L31 36 M65 35 L66 36"/>
+            </g>
+
+            <g class="doodle plane" transform="translate(150 735) rotate(-12)">
+                <path d="M0 35 L130 0 L85 115 L58 65 Z M58 65 L130 0 M58 65 L48 105 L85 115"/>
+                <path d="M-25 130 Q-5 150 20 130 M35 145 q18 8 27 -10"/>
+            </g>
+
+            <g class="doodle plant" transform="translate(1180 755)">
+                <path d="M48 35 Q5 5 18 -20 Q52 -12 48 35 M53 35 Q90 -5 112 10 Q100 45 53 35 M48 60 Q5 35 -5 58 Q8 88 48 60 M50 35 V115"/>
+                <path d="M20 110 L80 110 L73 175 Q50 190 27 175 Z"/>
+                <path d="M0 95 l-22 10 M100 85 l22 -10"/>
+            </g>
+
+            <g class="doodle arrow" transform="translate(100 375) rotate(-20)">
+                <path d="M0 20 Q45 -10 80 28 Q100 52 82 80 M0 20 L20 4 M0 20 L20 37"/>
+                <circle cx="80" cy="80" r="12"/>
+            </g>
+
+            <g class="doodle sparkle" transform="translate(1030 185)">
+                <path d="M0 -22 V22 M-22 0 H22 M-15 -15 L15 15 M15 -15 L-15 15"/>
+            </g>
+
+        </svg>
 
         <!-- Login card -->
-        <section class="join-card" id="signin">
+        <section class="join-card" id="signin" aria-labelledby="pageTitle">
 
-            <div class="join-brand">
+            <!-- Animated lightbulb theme toggle -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+                aria-pressed="false"
+            >
+                <svg class="bulb-icon" viewBox="0 0 64 80" aria-hidden="true">
+                    <path class="bulb-glass"
+                        d="M32 5 C15 5 7 18 9 33 C10 43 18 48 21 56 H43 C46 48 54 43 55 33 C57 18 49 5 32 5 Z"/>
 
-                <span class="brand-mark large">C<span>B</span></span>
+                    <path class="bulb-filament"
+                        d="M23 33 Q25 44 32 34 Q39 44 41 33 M32 35 V55"/>
 
-                <h1>CollabBoard</h1>
+                    <path class="bulb-base"
+                        d="M21 57 H43 M22 63 H42 M25 69 H39"/>
 
+                    <path class="bulb-ray"
+                        d="M32 0 V-8 M4 16 L-3 11 M60 16 L67 11 M5 49 L-2 53 M59 49 L66 53"/>
+                </svg>
+            </button>
+
+            <div class="card-heading">
+                <h1 id="pageTitle">CollabBoard</h1>
+
+                <p class="card-subtitle">
+                    Draw <span>•</span> Share <span>•</span> Create Together
+                </p>
             </div>
 
-            <p class="card-subtitle">
-                Create a room or join an existing room.
-            </p>
-
-            <form id="identityForm">
+            <form id="identityForm" novalidate>
 
                 <!-- Username -->
-                <div class="input-group">
+                <div class="input-group username-group">
+                    <label for="username">Your Username</label>
 
-                    <label class="sr-only" for="username">
-                        Username
-                    </label>
+                    <div class="input-shell">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M4 21 C4 16 7 14 12 14 C17 14 20 16 20 21"/>
+                        </svg>
 
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Enter your username"
-                        maxlength="24"
-                        autocomplete="nickname"
-                        required
-                    >
-
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your name..."
+                            maxlength="24"
+                            autocomplete="nickname"
+                            required
+                        >
+                    </div>
                 </div>
 
-                <div class="divider"></div>
+                <!-- OR divider -->
+                <div class="or-divider" aria-hidden="true">
+                    <span></span>
+                    <b>OR</b>
+                    <span></span>
+                </div>
 
-                <!-- Create room -->
-                <section class="action-section">
+                <!-- Room ID -->
+                <div class="input-group room-group">
+                    <label for="roomId">
+                        Room ID <small>(to join existing room)</small>
+                    </label>
 
-                    <h2>Create a Room</h2>
+                    <div class="input-shell">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 3 L6 21 M18 3 L15 21 M4 9 H21 M3 16 H20"/>
+                        </svg>
 
-                    <p>
-                        A Room ID will be generated automatically.
-                    </p>
+                        <input
+                            type="text"
+                            id="roomId"
+                            name="roomId"
+                            placeholder="Enter room ID..."
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="action-buttons">
 
                     <button
                         type="button"
-                        class="primary-button"
+                        class="action-button create-button"
                         id="createRoom"
                     >
-                        <span class="button-icon">＋</span>
-                        Create Room
+                        <span class="action-symbol">＋</span>
+                        <span>Create Room</span>
                     </button>
-
-                </section>
-
-                <div class="divider"></div>
-
-                <!-- Join room -->
-                <section class="action-section join-section">
-
-                    <h2>Join a Room</h2>
-
-                    <label class="sr-only" for="roomId">
-                        Room ID
-                    </label>
-
-                    <input
-                        type="text"
-                        id="roomId"
-                        name="roomId"
-                        placeholder="Enter Room ID"
-                        autocomplete="off"
-                    >
 
                     <button
                         type="submit"
-                        class="primary-button"
+                        class="action-button join-button"
                         id="joinRoom"
                     >
-                        Enter Room
-                        <span class="arrow">→</span>
+                        <span class="action-symbol join-symbol">↪</span>
+                        <span>Join Room</span>
                     </button>
 
-                    <p
-                        class="form-error"
-                        id="formError"
-                        role="alert"
-                    ></p>
+                </div>
 
-                </section>
+                <p class="form-error" id="formError"
+                   role="alert" aria-live="polite"></p>
 
             </form>
 
+            <div class="card-footer">
+                <p>
+                    Connect <span>•</span> Collaborate
+                    <span>•</span> Make Ideas Happen
+                </p>
+
+                <span class="footer-squiggle" aria-hidden="true"></span>
+
+                <small>
+                    CollabBoard © <span id="year"></span>
+                </small>
+            </div>
+
         </section>
+
+        <!-- Compatibility with existing home.js -->
+        <a href="#signin" id="signInLink" class="sr-only">Sign In</a>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-
-        <span>
-            CollabBoard © <span id="year"></span>
-        </span>
-
-        <span class="footer-separator">|</span>
-
-        <a href="#privacy">Privacy</a>
-
-        <span class="footer-separator">|</span>
-
-        <a href="#terms">Terms</a>
-
-    </footer>
-
-    <!-- Scripts -->
     <script src="/js/home.js"></script>
     <script src="/js/theme.js"></script>
 
