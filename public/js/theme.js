@@ -2,14 +2,10 @@
     "use strict";
 
     const STORAGE_KEY = "collabBoardDarkMode";
-
     const toggleButton = document.getElementById("themeToggle");
 
-    if (!toggleButton) {
-        return;
-    }
+    if (!toggleButton) return;
 
-    // Restore the previously selected theme.
     function getSavedTheme() {
         try {
             return localStorage.getItem(STORAGE_KEY) === "true";
@@ -18,9 +14,7 @@
         }
     }
 
-    // Apply the selected theme.
     function applyTheme(isDark) {
-
         document.body.classList.toggle("dark-mode", isDark);
 
         const label = isDark
@@ -31,7 +25,6 @@
         toggleButton.setAttribute("title", label);
         toggleButton.setAttribute("aria-pressed", String(isDark));
 
-        // Update browser theme colour on mobile.
         const themeColor = document.querySelector(
             'meta[name="theme-color"]'
         );
@@ -39,27 +32,29 @@
         if (themeColor) {
             themeColor.setAttribute(
                 "content",
-                isDark ? "#08132e" : "#c9b5f3"
+                isDark ? "#10152f" : "#ded5ff"
             );
         }
+
+        // Notify the drawing application to repaint its canvas.
+        window.dispatchEvent(
+            new CustomEvent("collabboard-theme-change", {
+                detail: { darkMode: isDark }
+            })
+        );
     }
 
-    // Apply saved theme immediately.
+    // Restore saved theme.
     applyTheme(getSavedTheme());
 
-    // Toggle theme when the bulb is clicked.
+    // Toggle theme.
     toggleButton.addEventListener("click", () => {
+        const isDark = !document.body.classList.contains("dark-mode");
 
-        const newDarkMode =
-            !document.body.classList.contains("dark-mode");
-
-        applyTheme(newDarkMode);
+        applyTheme(isDark);
 
         try {
-            localStorage.setItem(
-                STORAGE_KEY,
-                String(newDarkMode)
-            );
+            localStorage.setItem(STORAGE_KEY, String(isDark));
         } catch (error) {
             console.warn("Unable to save theme preference.");
         }
