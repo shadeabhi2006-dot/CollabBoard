@@ -882,21 +882,22 @@
     // --------------------------------------------------
 
     if (leaveRoomButton) {
-        leaveRoomButton.addEventListener("click", () => {
-            if (leavingRoom) return;
+        // LEAVE ROOM
+leaveRoomButton.addEventListener("click", () => {
 
-            leavingRoom = true;
+    // Disconnect from the room
+    if (socket) {
+        socket.disconnect();
+    }
 
-            // Remove any old room ID saved by previous versions.
-            localStorage.removeItem("roomId");
+    // Remove previously stored room information
+    localStorage.removeItem("roomId");
+    sessionStorage.removeItem("roomId");
 
-            // Keep the username saved.
-            localStorage.setItem("username", username);
-
-            socket.disconnect();
-
-            window.location.replace("/");
-        });
+    // Preserve the username for the next visit
+    // Redirect to the login page
+    window.location.replace("/");
+});
     }
 
     // --------------------------------------------------
